@@ -11,9 +11,9 @@ namespace LojinhaServer.Repositories
     {
         private readonly IMongoCollection<Product> _collection;
 
-        public ProductRepository(IMongoCollection<Product> collection)
+        public ProductRepository(IMongoDatabase mongoDatabase)
         {
-            _collection = collection;
+            _collection = mongoDatabase.GetCollection<Product>("products");
         }
 
         public async Task CreateAsync(Product product)
